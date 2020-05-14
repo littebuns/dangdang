@@ -1,0 +1,2 @@
+rootProject.name='LitePalTest'
+include ':app'

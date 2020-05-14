@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="主页"
+            />
+
+
+        <item
+            android:id="@+id/add_schedule"
+            android:icon="@drawable/schedule"
+            android:title="添加公告"
+            />
+
+        <item
+            android:id="@+id/admin_schedule"
+            android:icon="@drawable/schedule_admin"
+            android:title="分配任务"
+            />
+
+        <item
+            android:id="@+id/sign_admin"
+            android:icon="@drawable/sign"
+            android:title="打卡统计"
+            />
+
+        <item
+            android:id="@+id/user_manage"
+            android:icon="@drawable/changeuser"
+            android:title="人员管理"
+            />
+
+        <item
+            android:id="@+id/admin_approve"
+            android:icon="@drawable/approve"
+            android:title="审批管理"/>
+
+        <item
+            android:id="@+id/change_user"
+            android:icon="@drawable/exit"
+            android:title="切换用户"
+            />
+
+    </group>
+</menu>

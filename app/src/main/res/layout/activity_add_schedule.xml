@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background1"
+    tools:context=".activity.AddScheduleActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+       <LinearLayout
+           android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/InputBoxStyle"
+        >
+        <EditText
+            android:id="@+id/news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="输入标题"
+            style="@style/EditTextStyle"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InputBoxStyle"
+            >
+            <EditText
+                android:id="@+id/news_content"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:layout_gravity="left"
+                android:hint="输入正文"
+                style="@style/EditTextStyle"/>
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/user_manage_add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/yes"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/get_photo"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="120dp"-->
+<!--        android:layout_marginLeft="150dp"-->
+<!--        android:text="Get Photo"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/save_news"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="150dp"-->
+<!--        android:layout_marginBottom="60dp"-->
+<!--        android:text="发布公告"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        />-->
+
+
+
+
+
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+
+
+</RelativeLayout>
