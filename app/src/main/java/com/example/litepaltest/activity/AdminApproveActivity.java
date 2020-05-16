@@ -90,7 +90,7 @@ public class AdminApproveActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(AdminApproveActivity.this,MainActivity.class);
+                Intent intent = new Intent(AdminApproveActivity.this,AdminActivity.class);
                 startActivity(intent);
                 return true;
         }
