@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.litepaltest.Dao.DataDao;
@@ -112,6 +114,9 @@ public class AdminActivity extends BaseActivity {
 
         //导航抽屉的子项点击事件
         NavigationView navigationView =(NavigationView)findViewById(R.id.admin_view);
+        View header = navigationView.getHeaderView(0);
+        TextView username = (TextView)header.findViewById(R.id.name);
+        username.setText("管理员");
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

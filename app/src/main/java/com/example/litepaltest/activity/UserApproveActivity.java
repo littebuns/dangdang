@@ -20,12 +20,13 @@ import com.example.litepaltest.R;
 import com.example.litepaltest.adapter.ApproveAdapter;
 import com.example.litepaltest.adapter.PhoneAdapter;
 import com.example.litepaltest.entity.Approve;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class UserApproveActivity extends AppCompatActivity {
+public class UserApproveActivity extends BaseActivity {
     private List<Approve> approveList;
 
     @Override

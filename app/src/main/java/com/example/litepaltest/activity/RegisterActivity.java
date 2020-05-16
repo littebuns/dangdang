@@ -18,10 +18,11 @@ import android.widget.Toast;
 import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.entity.User;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
     private User user = new User();
 
     @Override

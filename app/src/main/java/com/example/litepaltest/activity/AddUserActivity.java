@@ -19,12 +19,13 @@ import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.entity.Schedule;
 import com.example.litepaltest.entity.User;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.litepal.LitePal;
 
-public class AddUserActivity extends AppCompatActivity {
+public class AddUserActivity extends BaseActivity {
     private User user = new User();
 
     @Override

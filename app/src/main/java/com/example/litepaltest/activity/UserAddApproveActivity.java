@@ -20,11 +20,12 @@ import android.widget.Toast;
 import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.entity.Approve;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Date;
 
-public class UserAddApproveActivity extends AppCompatActivity {
+public class UserAddApproveActivity extends BaseActivity {
     private static final String TAG = "UserAddApproveActivity";
 
     @RequiresApi(api = Build.VERSION_CODES.N)

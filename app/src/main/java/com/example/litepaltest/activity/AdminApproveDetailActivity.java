@@ -17,10 +17,11 @@ import android.widget.Toast;
 
 import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AdminApproveDetailActivity extends AppCompatActivity {
+public class AdminApproveDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

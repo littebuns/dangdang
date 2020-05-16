@@ -19,12 +19,13 @@ import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.adapter.ApproveAdapter;
 import com.example.litepaltest.entity.Approve;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class AdminApproveActivity extends AppCompatActivity {
+public class AdminApproveActivity extends BaseActivity {
 
     private List<Approve> approveList;
 

@@ -25,6 +25,7 @@ import com.example.litepaltest.R;
 import com.example.litepaltest.adapter.PhoneAdapter;
 import com.example.litepaltest.adapter.UserManageAdapter;
 import com.example.litepaltest.entity.User;
+import com.example.litepaltest.util.BaseActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -32,7 +33,7 @@ import org.litepal.LitePal;
 
 import java.util.List;
 
-public class UserManageActivity extends AppCompatActivity {
+public class UserManageActivity extends BaseActivity {
 
 
     private String searchText;

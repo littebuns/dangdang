@@ -12,11 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +44,7 @@ public class MainActivity extends BaseActivity {
     private NewsAdapter adapter;
     private SwipeRefreshLayout refresh;
     private RecyclerView recyclerView;
+    private String name;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -55,6 +60,16 @@ public class MainActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.list1);
         }
+//        LayoutInflater factory = LayoutInflater.from(MainActivity.this);
+//
+//        View layout = factory.inflate(R.layout.nav_header, null);
+//
+//        textView = (TextView) layout.findViewById(R.id.name);
+
+
+        SharedPreferences preferences = getSharedPreferences("name",MODE_PRIVATE);
+        name = preferences.getString("name","");
+
 
 
         new Thread(new Runnable() {
@@ -113,6 +128,10 @@ public class MainActivity extends BaseActivity {
 
         //导航抽屉的子项点击事件
         NavigationView navigationView =(NavigationView)findViewById(R.id.nav_view);
+        //给导航栏中设置名字
+        View header = navigationView.getHeaderView(0);
+        TextView username = (TextView)header.findViewById(R.id.name);
+        username.setText(name);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
