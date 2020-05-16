@@ -290,6 +290,30 @@ public class DataDao extends BaseDao{
     }
 
 
+    //模糊查询公告
+    public List<News> selectNewsByTitle(String title){
+        List<News>  newsList = new ArrayList<>();
+        try {
+            conn = JDBCUtils.getConnection();
+            String sql = "select * from news where title like '%"+title+"%' ";
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while (rs.next()){
+                News news = new News();
+                news.setTitle(rs.getString("title"));
+                news.setContent(rs.getString("content"));
+                news.setPrictureUrl(rs.getString("pricture"));
+                newsList.add(news);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.release(conn,ps,rs);
+        }
+        return newsList;
+
+    }
 
 
 

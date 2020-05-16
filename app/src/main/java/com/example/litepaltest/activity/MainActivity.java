@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.adapter.NewsAdapter;
+import com.example.litepaltest.adapter.UserManageAdapter;
 import com.example.litepaltest.entity.News;
 import com.example.litepaltest.entity.Schedule;
 import com.example.litepaltest.util.BaseActivity;
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private SwipeRefreshLayout refresh;
     private RecyclerView recyclerView;
     private String name;
+    private String searchText;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -176,8 +180,47 @@ public class MainActivity extends BaseActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.toolbar,menu);
+        getMenuInflater().inflate(R.menu.main_toolbar,menu);
+        MenuItem searchItem = menu.findItem(R.id.serach_menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setQueryHint("请输入搜索内容");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            //处理点击搜索
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        DataDao dataDao = new DataDao();
+                        newsList = dataDao.selectNewsByTitle(query);
+                    }
+                }).start();
+
+
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                adapter = new NewsAdapter(newsList,MainActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                Toast.makeText(MainActivity.this,"查询成功",Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            //搜索框文字变化监听
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchText = newText;
+                return false;
+            }
+        });
         return true;
+
+
     }
 
 
@@ -188,9 +231,7 @@ public class MainActivity extends BaseActivity {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.delete:
-                Toast.makeText(this,"you chick Delete",Toast.LENGTH_SHORT).show();
-                break;
+
             default:
         }
         return true;
