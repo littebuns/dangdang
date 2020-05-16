@@ -48,8 +48,11 @@ public class SignAdapter extends  RecyclerView.Adapter<SignAdapter.ViewHodler> {
     @Override
     public void onBindViewHolder(@NonNull SignAdapter.ViewHodler holder, int position) {
         Sign sign = signList.get(position);
+        String content = sign.getLocation();
+        content = content+"             ";
+        content = content.substring(0,10);
         holder.signName.setText(sign.getName());
-        holder.signLocation.setText(sign.getLocation());
+        holder.signLocation.setText(content);
         holder.signDate.setText(sign.getDate());
 
     }

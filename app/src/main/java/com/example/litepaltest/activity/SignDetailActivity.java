@@ -1,10 +1,15 @@
 package com.example.litepaltest.activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.example.litepaltest.Dao.DataDao;
@@ -26,6 +31,14 @@ public class SignDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_detail);
         //获取所有的打卡记录
+
+        Toolbar toolbar = findViewById(R.id.sign_toolbar1);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            //将toolbar的后退键给显示出来
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         new Thread(new Runnable() {
             @Override
@@ -53,4 +66,17 @@ public class SignDetailActivity extends BaseActivity {
         ImageView imageView = (ImageView) findViewById(R.id.sign_imageView);
         imageView.setImageResource(R.drawable.sign_pic);
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent intent = new Intent(SignDetailActivity.this,AdminActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

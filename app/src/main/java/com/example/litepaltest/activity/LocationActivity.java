@@ -108,7 +108,7 @@ public class LocationActivity extends BaseActivity {
             public void onClick(View v) {
                 SharedPreferences preferences = getSharedPreferences("name",MODE_PRIVATE);
                 String name = preferences.getString("name","");
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
                 Date date = new Date();
                 sign1.setLocation(signLocation);
                 sign1.setName(name);
