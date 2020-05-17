@@ -174,8 +174,8 @@ public class DataDao extends BaseDao{
 
     //发布公告
     public void addNews(News news){
-        String sql = "insert into news (title,content) VALUES (?,?)  ";
-        Object [] objects = {news.getTitle(),news.getContent()};
+        String sql = "insert into news (title,content,pricture) VALUES (?,?,?)  ";
+        Object [] objects = {news.getTitle(),news.getContent(),news.getPrictureUrl()};
         toUpdate(sql,objects);
     }
 

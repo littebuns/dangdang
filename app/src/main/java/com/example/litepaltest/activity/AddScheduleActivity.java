@@ -9,7 +9,10 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +30,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.litepal.LitePal;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
@@ -47,7 +52,7 @@ public class AddScheduleActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
 //        Button chooseFromAlbm = (Button) findViewById(R.id.get_photo);
-        imageView = findViewById(R.id.picture);
+//        imageView = findViewById(R.id.picture);
 //        Button saveNews = (Button) findViewById(R.id.save_news);
 //        saveNews.setOnClickListener(this);
 //        chooseFromAlbm.setOnClickListener(this);
@@ -71,14 +76,14 @@ public class AddScheduleActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View view){
         int id = view.getId();
-        switch (id){
+//        switch (id){
 //            case R.id.get_photo:
 //                getPermission();
 //                goPhotoAlbum();
 //                break;
-//            case R.id.save_news:
-//                saveNews();
-        }
+////            case R.id.save_news:
+////                saveNews();
+//        }
     }
 
     public void saveNews(){
@@ -86,6 +91,21 @@ public class AddScheduleActivity extends BaseActivity implements View.OnClickLis
         newsContentEdit = (EditText) findViewById(R.id.news_content);
         String title = newsTitleEdit.getText().toString();
         String content = newsContentEdit.getText().toString();
+
+//        //进行图片的存储
+//        Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG,50,outputStream);
+//        try {
+//            outputStream.flush();
+//            outputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        //将获取到的outputstream转换成byte数组
+//        byte[] bytes = outputStream.toByteArray();
+//        //android.util包下有Base64工具类，直接调用，格式选择Base64.DEFAULT即可
+//        String str = Base64.encodeToString(bytes, Base64.DEFAULT);
         news.setTitle(title);
         news.setContent(content);
         news.setPrictureUrl(photoPath);
