@@ -2,6 +2,7 @@ package com.example.litepaltest.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.tu.loadingdialog.LoadingDailog;
 import com.example.litepaltest.R;
 import com.example.litepaltest.entity.User;
 import com.example.litepaltest.util.BaseActivity;
@@ -35,6 +37,7 @@ public class LoginActivity extends BaseActivity {
     User user = new User();
     String account;
     String password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,15 @@ public class LoginActivity extends BaseActivity {
                 account = accountEdit.getText().toString();
                 password = passwordEdit.getText().toString();
 
+
+                LoadingDailog.Builder loadBuilder=new LoadingDailog.Builder(LoginActivity.this)
+                        .setMessage("加载中...")
+                        .setCancelable(true)
+                        .setCancelOutside(true);
+
+                LoadingDailog dialog=loadBuilder.create();
+
+                dialog.show();
 
                 new Thread(new Runnable() {
                     @Override
@@ -98,6 +110,7 @@ public class LoginActivity extends BaseActivity {
 
                 try {
                     if(user.getPassword().equals(password) && user.getRole() == 0){
+
                         SharedPreferences.Editor editor = getSharedPreferences("name",MODE_PRIVATE).edit();
                         editor.putString("name", user.getName());
                         editor.apply();
@@ -106,6 +119,7 @@ public class LoginActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }
+
                     if(user.getPassword().equals(password) && user.getRole()==1){
                         Intent intent = new Intent(LoginActivity.this,AdminActivity.class);
                         Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();

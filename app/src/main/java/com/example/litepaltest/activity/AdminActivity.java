@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class AdminActivity extends BaseActivity {
     private List<News> newsList = new ArrayList<>();
     private NewsAdapter adapter;
     private SwipeRefreshLayout refresh;
+    private String searchText;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -171,12 +174,51 @@ public class AdminActivity extends BaseActivity {
     }
 
 
-
-    //toolbar相关
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar,menu);
+        MenuItem searchItem = menu.findItem(R.id.serach_menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setQueryHint("请输入搜索内容");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            //处理点击搜索
+            @Override
+            public boolean onQueryTextSubmit(final String query) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        DataDao dataDao = new DataDao();
+                        newsList = dataDao.selectNewsByTitle(query);
+                    }
+                }).start();
+
+
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                adapter = new NewsAdapter(newsList,AdminActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                Toast.makeText(AdminActivity.this,"查询成功",Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            //搜索框文字变化监听
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchText = newText;
+                return false;
+            }
+        });
         return true;
+
+
     }
+
+
 
     //toolbar子项的点击事件
     @Override
