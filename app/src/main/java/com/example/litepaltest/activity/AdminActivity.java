@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.litepaltest.Dao.DataDao;
 import com.example.litepaltest.R;
 import com.example.litepaltest.adapter.NewsAdapter;
+import com.example.litepaltest.adapter.UserManageAdapter;
 import com.example.litepaltest.entity.News;
 import com.example.litepaltest.util.BaseActivity;
 import com.example.litepaltest.util.activityUtil;
@@ -124,6 +125,11 @@ public class AdminActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.nav_home:
+                        Intent intent1 = new Intent(AdminActivity.this,AdminActivity.class);
+                        startActivity(intent1);
+                        break;
+
                     case R.id.add_schedule:
                         Intent intent = new Intent(AdminActivity.this,AddScheduleActivity.class);
                         startActivity(intent);
@@ -228,8 +234,37 @@ public class AdminActivity extends BaseActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.delete:
-                Toast.makeText(this,"you chick Delete",Toast.LENGTH_SHORT).show();
-                break;
+                if(searchText!=null ) {
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DataDao dataDao = new DataDao();
+                            dataDao.deleteNews(searchText);
+                        }
+                    }).start();
+
+                    Toast.makeText(AdminActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        DataDao dataDao = new DataDao();
+                        newsList = dataDao.selectNews();
+                    }
+                }).start();
+
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                adapter = new NewsAdapter(newsList,AdminActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                return true;
             default:
         }
         return true;

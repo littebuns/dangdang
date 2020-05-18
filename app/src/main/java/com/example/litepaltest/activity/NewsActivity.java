@@ -61,8 +61,8 @@ public class NewsActivity extends BaseActivity {
 
         //图片加载
         ImageView newsImageView = (ImageView) findViewById(R.id.news_imageView);
-
-        Glide.with(this).load(newsPictureUrl).into(newsImageView);
+//
+//        Glide.with(this).load(newsPictureUrl).into(newsImageView);
 
         //
         TextView newsTextView = (TextView)findViewById(R.id.news_content_detail);

@@ -94,6 +94,15 @@ public class DataDao extends BaseDao{
     }
 
 
+    //根据标题删除公告
+    public void deleteNews(String name){
+        String sql = "delete from news where title = ?";
+        Object [] objects = {name};
+        toUpdate(sql,objects);
+
+    }
+
+
 
 
 
@@ -166,7 +175,7 @@ public class DataDao extends BaseDao{
 
     //完成任务
     public void updataSchedule(String name){
-        String sql = "update Schedule set finished = 1 where name = ?";
+        String sql = "update Schedule set finished = 1 where content = ?";
         Object [] objects = {name};
         toUpdate(sql,objects);
     }

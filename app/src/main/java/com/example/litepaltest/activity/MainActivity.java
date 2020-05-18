@@ -140,6 +140,11 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.nav_home:
+                        Intent intent1 =new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(intent1);
+                        break;
+
                     case R.id.nav_address:
                         Intent intent = new Intent(MainActivity.this,LocationActivity.class);
                         startActivity(intent);

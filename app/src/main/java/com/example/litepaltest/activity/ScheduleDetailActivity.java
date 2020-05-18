@@ -73,10 +73,9 @@ public class ScheduleDetailActivity extends BaseActivity {
                             @Override
                             public void run() {
                                 DataDao dataDao = new DataDao();
-                                dataDao.updataSchedule(name);
+                                dataDao.updataSchedule(content);
                             }
                         }).start();
-
 
                         Intent intent = new Intent(ScheduleDetailActivity.this,ScheduleUserActivity.class);
                         startActivity(intent);

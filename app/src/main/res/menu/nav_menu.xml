@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_address"
             android:icon="@drawable/address"
-            android:title="地址"
+            android:title="签 到"
             />
 
         <item
